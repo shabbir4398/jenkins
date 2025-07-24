@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp1
+  namespace: myns1
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+     app: tomcat
+  template:
+    metadata:
+     labels:
+       app: tomcat
+    spec:
+     imagePullSecrets:
+       - name:  passwd-for-custom-di
+     containers:
+       - name: tomcat
+         image:  shabbir34019/12-6-25:BUILD_NUMBER
+         ports:
+          - containerPort: 8080
+      
